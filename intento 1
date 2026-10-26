@@ -1,0 +1,1613 @@
+<!-- Quotiva PRO · catálogo con fotos, panel administrativo protegido y promociones -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quotiva PRO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#14202E; --ink-soft:#3D4E5F; --slate:#6B7C8C;
+  --line:#D2DBE0; --paper:#FFFFFF; --wash:#E7EDEF;
+  --teal:#06786B; --teal-ink:#04544B; --amber:#C98A16; --rose:#A83247;
+  --radius:4px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;margin:0}
+.mono{font-family:"IBM Plex Mono",monospace}
+button{font:inherit}
+a{color:var(--teal-ink)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+
+header.top{background:var(--ink);color:#fff;padding:14px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+header.top .brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em}
+header.top .brand span{color:#7FD8C6}
+nav.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;align-items:center}
+nav.tabs button{background:transparent;border:1px solid transparent;color:#B9C7D2;padding:6px 12px;border-radius:var(--radius);cursor:pointer;font-size:13.5px}
+nav.tabs button:hover{color:#fff;border-color:#31445A}
+nav.tabs button[aria-selected="true"]{background:#fff;color:var(--ink);font-weight:600}
+.lock{font-size:11px;font-family:"IBM Plex Mono",monospace;color:#7FD8C6;letter-spacing:.08em}
+main{max-width:1180px;margin:0 auto;padding:26px 20px 90px}
+.view{display:none}.view.on{display:block}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.page-head{margin-bottom:22px;max-width:62ch}
+.page-head p{color:var(--ink-soft);margin:8px 0 0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card + .card{margin-top:16px}
+.card h3{font-size:16px;margin-bottom:14px}
+.grid2{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+.split{display:grid;gap:16px;grid-template-columns:1.55fr 1fr;align-items:start}
+@media(max-width:860px){.grid2,.split{grid-template-columns:1fr}}
+
+label.f{display:block;margin-bottom:12px}
+label.f > span{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:4px}
+input[type=file]{padding:7px;font-size:13px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:99px;padding:6px 14px;cursor:pointer;font-size:13.5px;color:var(--ink-soft)}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:600}
+.seccion{margin:0 0 10px;font-size:15px;display:flex;align-items:baseline;gap:10px}
+.seccion small{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate);font-weight:400;letter-spacing:.08em}
+.bloque + .bloque{margin-top:24px}
+.barra{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.barra input,.barra select{width:auto;min-width:170px}
+.pag{display:flex;gap:8px;align-items:center;justify-content:flex-end;padding:12px 10px 0}
+.prod .precio{font-family:"IBM Plex Mono",monospace;font-weight:600;margin-top:2px}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;font:inherit;color:var(--ink)}
+textarea{min-height:78px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);outline:none;box-shadow:0 0 0 3px rgba(6,120,107,.12)}
+.hint{font-size:12px;color:var(--slate);margin-top:4px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;padding:9px 15px;border-radius:var(--radius);border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;font-size:14px;font-weight:500}
+.btn:hover{background:#1E3145}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.ghost:hover{background:#F0F4F5}
+.btn.wa{background:var(--teal);border-color:var(--teal)}
+.btn.wa:hover{background:var(--teal-ink)}
+.btn.sm{padding:6px 11px;font-size:13px}
+.btn.danger{background:#fff;color:var(--rose);border-color:#E3C3CA}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- catálogo con fotos ---------- */
+.catalogo{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(215px,1fr))}
+.prod{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.prod.activo{border-color:var(--teal);box-shadow:0 0 0 2px rgba(6,120,107,.14)}
+.prod .foto{aspect-ratio:4/3;background:#F1F5F6;border-bottom:1px solid var(--line)}
+.prod .foto img{width:100%;height:100%;object-fit:cover;display:block}
+.prod .cuerpo{padding:12px 13px 13px;display:flex;flex-direction:column;gap:4px;flex:1}
+.prod .sku{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--slate)}
+.prod .nom{font-weight:600;font-size:14.5px;line-height:1.3}
+.prod .desc{font-size:12.5px;color:var(--slate)}
+.prod .precio{font-family:"IBM Plex Mono",monospace;font-weight:600;margin-top:2px}
+.prod .pie{margin-top:auto;padding-top:11px}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stepper button{width:38px;height:36px;border:0;background:#F4F8F8;color:var(--ink);font-size:17px;cursor:pointer;line-height:1}
+.stepper button:hover{background:#E4EFEE;color:var(--teal-ink)}
+.stepper .val{flex:1;text-align:center;font-family:"IBM Plex Mono",monospace;font-weight:600;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:0;padding:8px 2px;min-width:52px;background:#fff;-moz-appearance:textfield}
+.stepper .val:focus{outline:none;box-shadow:inset 0 0 0 2px rgba(6,120,107,.18)}
+.stepper .val::-webkit-outer-spin-button,.stepper .val::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.add{width:100%;border:1px dashed var(--line);background:#fff;color:var(--ink-soft);padding:8px;border-radius:var(--radius);cursor:pointer;font-size:13.5px}
+.add:hover{border-color:var(--teal);color:var(--teal-ink);border-style:solid}
+.promo-tag{display:inline-block;font-size:11px;font-family:"IBM Plex Mono",monospace;color:var(--teal-ink);background:#E8F3F1;border-radius:3px;padding:2px 6px;margin-top:2px}
+
+.resumen{position:sticky;top:76px}
+.resumen ul{list-style:none;margin:0;padding:0;font-size:14px}
+.resumen li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #EDF1F3}
+.resumen li span.q{font-family:"IBM Plex Mono",monospace;color:var(--slate)}
+
+.folio{display:inline-block;background:var(--ink);color:#EAF6F3;font-family:"IBM Plex Mono",monospace;font-weight:600;letter-spacing:.06em;padding:7px 14px;border-radius:var(--radius);position:relative}
+.folio::before,.folio::after{content:"";position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--wash);transform:translateY(-50%)}
+.folio::before{left:-5px}.folio::after{right:-5px}
+.folio.big{font-size:19px;padding:10px 18px}
+.card .folio::before,.card .folio::after{background:var(--paper)}
+
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;border:1px solid currentColor}
+.s-nueva{color:var(--teal-ink)}.s-revision{color:var(--amber)}.s-enviada{color:#2C5FA8}
+.s-aceptada{color:#2F7D3A}.s-vencida{color:var(--rose)}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);font-weight:500;padding:0 10px 8px;border-bottom:1px solid var(--line)}
+td{padding:11px 10px;border-bottom:1px solid #EDF1F3;vertical-align:middle}
+tbody tr.clickable{cursor:pointer}
+tbody tr.clickable:hover{background:#F4F8F8}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace}
+td input,td select{padding:5px 7px;font-size:13.5px}
+.w-70{width:70px}.w-90{width:90px}
+.empty{padding:34px 10px;text-align:center;color:var(--slate)}
+.new-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);margin-right:7px}
+
+.wa-preview{background:#DCE7E3;border-radius:var(--radius);padding:16px;border:1px solid #C3D4CF}
+.wa-bubble{background:#fff;border-radius:2px 10px 10px 10px;padding:11px 13px;font-size:14px;white-space:pre-wrap;box-shadow:0 1px 2px rgba(20,32,46,.14);max-width:36ch}
+.wa-bubble .lnk{color:#0A6ED1;word-break:break-all}
+.wa-meta{font-size:11px;color:#5E7169;margin-top:8px;font-family:"IBM Plex Mono",monospace}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;font-size:14px}
+.kv dt{color:var(--slate);font-size:12.5px;padding-top:1px}
+.kv dd{margin:0;font-weight:500}
+.timeline{list-style:none;margin:0;padding:0;font-size:13.5px}
+.timeline li{padding:0 0 12px 16px;border-left:1px solid var(--line);position:relative}
+.timeline li::before{content:"";position:absolute;left:-3.5px;top:6px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.timeline time{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:var(--radius);font-size:14px;z-index:50;transition:transform .28s ease;max-width:90vw}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.notice{border-left:3px solid var(--teal);background:#F1F7F6;padding:11px 14px;font-size:13.5px;color:var(--ink-soft);border-radius:0 var(--radius) var(--radius) 0}
+.notice.warn{border-color:var(--amber);background:#FBF5E9}
+.token{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:#F0F4F5;padding:2px 6px;border-radius:3px;word-break:break-all}
+.sep{height:1px;background:var(--line);margin:18px 0}
+.login{max-width:390px;margin:60px auto}
+.promo-card{border:1px solid var(--line);border-radius:var(--radius);padding:14px;display:flex;gap:14px;align-items:flex-start}
+.promo-card + .promo-card{margin-top:10px}
+.promo-card .body{flex:1}
+.promo-card h4{margin:0 0 3px;font-family:"Bricolage Grotesque",sans-serif;font-size:15px}
+.promo-card.off{opacity:.55}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="brand">Quotiva<span> PRO</span></div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <div class="tabs" style="margin-left:0;gap:10px">
+    <span class="lock" id="sesion"></span>
+    <button id="entrar-nav">Iniciar sesión</button>
+    <button id="salir" style="display:none">Cerrar sesión</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ CLIENTE ============ -->
+<section class="view on" id="v-cliente">
+  <div class="page-head">
+    <p class="eyebrow">Catálogo público</p>
+    <h1>Arme su cotización</h1>
+    <p>Elija los productos y ajuste las cantidades. Al enviar, su solicitud llega al WhatsApp de la empresa con el folio y el enlace de seguimiento.</p>
+  </div>
+
+  <div class="split">
+    <div>
+      <div class="barra">
+        <input id="k-buscar" placeholder="Buscar producto o código…">
+        <span class="hint" id="k-conteo" style="margin:0"></span>
+      </div>
+      <div class="chips" id="k-chips"></div>
+      <div id="catalogo"></div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>Sus datos de contacto</h3>
+        <div class="grid2">
+          <label class="f"><span>Nombre</span><input id="c-nombre" placeholder="Escriba su nombre"></label>
+          <label class="f"><span>Empresa</span><input id="c-empresa" placeholder="Nombre de su empresa"></label>
+          <label class="f"><span>País</span>
+            <select id="c-pais"><option value="">Seleccione…</option><option>Honduras</option><option>México</option><option>Guatemala</option><option>Costa Rica</option><option>Colombia</option><option>Estados Unidos</option></select></label>
+          <label class="f"><span>Ciudad o estado</span><input id="c-ciudad" placeholder="Ciudad o estado"></label>
+          <label class="f"><span>Teléfono</span><input id="c-tel" placeholder="+504 0000 0000"></label>
+          <label class="f"><span>WhatsApp</span><input id="c-wa" placeholder="+504 0000 0000">
+            <span class="hint">Con código de país, para que la empresa pueda responderle.</span></label>
+        </div>
+        <label class="f"><span>Correo electrónico</span><input id="c-mail" type="email" placeholder="correo@dominio.com"></label>
+        <label class="f"><span>Comentarios adicionales</span>
+          <textarea id="c-coment" placeholder="Plazos de entrega, especificaciones, condiciones de pago…"></textarea></label>
+      </div>
+    </div>
+
+    <div class="card resumen">
+      <h3>Su pedido</h3>
+      <ul id="c-resumen"></ul>
+      <div style="display:flex;justify-content:space-between;margin-top:12px;align-items:baseline">
+        <span class="eyebrow" style="margin:0">Unidades</span>
+        <span class="mono" style="font-size:19px;font-weight:600" id="c-total">0 u</span>
+      </div>
+      <p class="hint">Los precios se calculan con las promociones que apliquen y se los enviamos en la cotización.</p>
+      <button class="btn wa" id="c-generar" style="width:100%;margin-top:8px">Enviar solicitud por WhatsApp</button>
+    </div>
+  </div>
+
+  <div class="card" id="c-recibo" style="display:none;margin-top:16px">
+    <h3>Solicitud registrada</h3>
+    <div class="split">
+      <div>
+        <div class="folio big" id="r-folio">QT-2026-00000</div>
+        <dl class="kv" style="margin-top:16px">
+          <dt>Enlace</dt><dd><span class="token" id="r-link"></span></dd>
+          <dt>Vence</dt><dd id="r-vence"></dd>
+          <dt>Estado</dt><dd><span class="pill s-nueva">Nueva</span></dd>
+        </dl>
+        <div class="btn-row" style="margin-top:16px">
+          <button class="btn wa" id="r-wa">Abrir WhatsApp de la empresa</button>
+        </div>
+        <p class="hint">La solicitud ya quedó guardada. El botón abre la conversación con el mensaje escrito; solo debe presionar enviar.</p>
+      </div>
+      <div class="wa-preview">
+        <div class="wa-bubble" id="r-msg"></div>
+        <div class="wa-meta" id="r-num"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANEL (protegido) ============ -->
+<section class="view" id="v-panel">
+  <div class="card login" id="p-login">
+    <p class="eyebrow">Área restringida</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Solo administradores</h1>
+    <p class="hint">Las solicitudes de los clientes solo son visibles para la cuenta de administrador de la empresa.</p>
+    <button class="btn" style="margin-top:14px" onclick="mostrar('acceso')">Iniciar sesión</button>
+  </div>
+
+  <div id="p-lista" style="display:none">
+    <div class="page-head">
+      <p class="eyebrow">Bandeja de solicitudes</p>
+      <h1>Cotizaciones recibidas</h1>
+      <p>Las solicitudes llegan aquí en el mismo orden en que entraron al WhatsApp de la empresa. Abra una para revisarla y responder.</p>
+    </div>
+    <div class="notice" id="p-aviso" style="margin-bottom:16px"></div>
+    <div class="card" style="padding:20px 12px">
+      <table>
+        <thead><tr>
+          <th style="padding-left:14px">Folio</th><th>Cliente</th><th>Empresa</th>
+          <th>Ciudad / País</th><th>Recibida</th><th class="num">Total</th><th>Estado</th>
+        </tr></thead>
+        <tbody id="p-filas"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="p-detalle" style="display:none">
+    <button class="btn ghost sm" id="d-volver" style="margin-bottom:18px">← Volver a la bandeja</button>
+    <div class="split">
+      <div>
+        <div class="card">
+          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+            <span class="folio big" id="d-folio"></span>
+            <span id="d-estado"></span>
+            <select id="d-cambiar" style="width:auto;margin-left:auto">
+              <option>Nueva</option><option>En revisión</option><option>Enviada</option><option>Aceptada</option><option>Vencida</option>
+            </select>
+          </div>
+          <dl class="kv" id="d-info"></dl>
+        </div>
+
+        <div class="card">
+          <h3>Productos solicitados</h3>
+          <table>
+            <thead><tr>
+              <th>Producto</th><th class="num w-70">Cant.</th><th class="num w-90">Precio</th>
+              <th>Promoción</th><th class="num w-70">Desc. %</th><th class="num">Subtotal</th>
+            </tr></thead>
+            <tbody id="d-lineas"></tbody>
+          </table>
+          <div style="display:flex;justify-content:flex-end;gap:16px;margin-top:16px;align-items:center;flex-wrap:wrap">
+            <span class="eyebrow" style="margin:0">Costo de envío</span>
+            <input id="d-envio" type="number" min="0" step="0.01" value="0" style="width:120px;text-align:right">
+            <input id="d-envio-nota" placeholder="Nota del envío (opcional)" style="width:210px">
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:26px;margin-top:14px;align-items:baseline">
+            <span class="eyebrow" style="margin:0">Subtotal</span>
+            <span class="mono" id="d-subtotal">$0.00</span>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:26px;margin-top:8px;align-items:baseline">
+            <span class="eyebrow" style="margin:0">Total estimado</span>
+            <span class="mono" style="font-size:24px;font-weight:600" id="d-total">$0.00</span>
+          </div>
+          <div class="btn-row" style="margin-top:16px">
+            <select id="d-catalogo" style="max-width:260px"></select>
+            <button class="btn ghost sm" id="d-add">Agregar producto</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Comentarios internos</h3>
+          <textarea id="d-nota" placeholder="Visible solo para el equipo interno."></textarea>
+          <button class="btn ghost sm" id="d-nota-add" style="margin-top:10px">Guardar comentario</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h3>Promociones para este cliente</h3>
+          <div id="d-promos"></div>
+        </div>
+        <div class="card">
+          <h3>Acciones</h3>
+          <div class="btn-row">
+            <button class="btn wa" id="d-wa">Responder por WhatsApp</button>
+            <button class="btn ghost" id="d-pdf">Generar PDF</button>
+            <button class="btn ghost" id="d-enviar">Enviar al cliente</button>
+          </div>
+          <div class="sep"></div>
+          <h3>Enlace seguro</h3>
+          <dl class="kv">
+            <dt>URL</dt><dd><span class="token" id="d-link"></span></dd>
+            <dt>Token</dt><dd><span class="token" id="d-token"></span></dd>
+            <dt>Vence</dt><dd id="d-vence"></dd>
+            <dt>Permiso</dt><dd>Cliente: solo lectura · Admin: edición</dd>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>Mensaje al cliente</h3>
+          <div class="wa-preview">
+            <div class="wa-bubble" id="d-msg"></div>
+            <div class="wa-meta" id="d-num"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Historial</h3>
+          <ul class="timeline" id="d-historial"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMOCIONES (protegido) ============ -->
+<section class="view" id="v-promos">
+  <div class="card login" id="pr-bloqueo">
+    <p class="eyebrow">Área restringida</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Solo administradores</h1>
+    <p class="hint">Inicie sesión desde el panel administrativo para crear y editar promociones.</p>
+    <button class="btn ghost" style="margin-top:12px" onclick="mostrar('panel')">Ir al inicio de sesión</button>
+  </div>
+
+  <div id="pr-contenido" style="display:none">
+    <div class="page-head">
+      <p class="eyebrow">Reglas comerciales</p>
+      <h1>Promociones</h1>
+      <p>Las promociones activas aparecen en el catálogo del cliente y quedan disponibles para aplicarlas en cada cotización.</p>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>Promociones creadas</h3>
+        <div id="pr-lista"></div>
+      </div>
+
+      <div class="card">
+        <h3>Nueva promoción</h3>
+        <label class="f"><span>Nombre</span><input id="pr-nombre" placeholder="Ej. Lleve 5 y pague 4"></label>
+        <label class="f"><span>Tipo</span>
+          <select id="pr-tipo">
+            <option value="cantidad">Compra X y recibe Y gratis</option>
+            <option value="porcentaje">Descuento en porcentaje</option>
+          </select></label>
+
+        <div class="grid2" id="pr-campos-cantidad">
+          <label class="f"><span>Compra (X)</span><input id="pr-x" type="number" min="1" value="5"></label>
+          <label class="f"><span>Gratis (Y)</span><input id="pr-y" type="number" min="1" value="1"></label>
+        </div>
+        <label class="f" id="pr-campo-pct" style="display:none"><span>Descuento %</span><input id="pr-pct" type="number" min="1" max="90" value="15"></label>
+
+        <label class="f"><span>Aplica a</span>
+          <select id="pr-alcance">
+            <option value="todos">Todos los clientes</option>
+            <option value="cliente">Un cliente específico</option>
+            <option value="estado">Una ciudad, estado o país</option>
+          </select></label>
+        <label class="f" id="pr-campo-valor" style="display:none"><span id="pr-valor-lbl">Valor</span><input id="pr-valor"></label>
+
+        <label class="f"><span>Productos</span>
+          <select id="pr-producto"><option value="">Todos los productos</option></select></label>
+        <label class="f"><span>Válida hasta</span><input id="pr-fecha" type="date"></label>
+
+        <button class="btn" id="pr-crear" style="width:100%">Crear promoción</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIGURACIÓN (protegido) ============ -->
+<section class="view" id="v-config">
+  <div class="card login" id="cf-bloqueo">
+    <p class="eyebrow">Área restringida</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Solo administradores</h1>
+    <p class="hint">Inicie sesión desde el panel administrativo para editar la configuración de la empresa.</p>
+    <button class="btn ghost" style="margin-top:12px" onclick="mostrar('panel')">Ir al inicio de sesión</button>
+  </div>
+
+  <div id="cf-contenido" style="display:none">
+    <div class="page-head">
+      <p class="eyebrow">Cuenta de la empresa</p>
+      <h1>Configuración de empresa</h1>
+      <p>Cada empresa de la plataforma usa su propio número de WhatsApp y su propio mensaje. Los cambios no afectan a otras cuentas.</p>
+    </div>
+    <div class="split">
+      <div class="card">
+        <h3>Identidad</h3>
+        <div class="grid2">
+          <label class="f"><span>Nombre de la empresa</span><input id="g-nombre"></label>
+          <label class="f"><span>Logo (URL)</span><input id="g-logo" placeholder="https://…/logo.svg"></label>
+          <label class="f"><span>Correo</span><input id="g-mail"></label>
+          <label class="f"><span>Teléfono</span><input id="g-tel"></label>
+          <label class="f"><span>País</span><input id="g-pais"></label>
+          <label class="f"><span>Dirección</span><input id="g-dir"></label>
+        </div>
+        <div class="sep"></div>
+        <h3>WhatsApp empresarial</h3>
+        <div class="grid2">
+          <label class="f"><span>Número que recibe las solicitudes</span><input id="g-wa">
+            <span class="hint">Formato internacional sin espacios: 50422001100</span></label>
+          <label class="f"><span>Horario de atención</span><input id="g-horario"></label>
+        </div>
+        <label class="f" style="display:flex;gap:9px;align-items:center">
+          <input type="checkbox" id="g-activo" style="width:auto;margin:0"><span style="margin:0">WhatsApp activo</span></label>
+        <div class="sep"></div>
+        <h3>Mensaje al cliente</h3>
+        <label class="f"><textarea id="g-msg" style="min-height:120px"></textarea>
+          <span class="hint">Variables: {cliente} · {folio} · {enlace} · {empresa}</span></label>
+        <div class="sep"></div>
+        <h3>Catálogo del cliente</h3>
+        <label class="f" style="display:flex;gap:9px;align-items:center">
+          <input type="checkbox" id="g-precios" style="width:auto;margin:0">
+          <span style="margin:0">Mostrar los precios de lista en el catálogo</span></label>
+        <p class="hint" style="margin-top:-6px">Si lo desactiva, el cliente arma su pedido solo con cantidades y ve los precios hasta recibir la cotización.</p>
+        <div class="sep"></div>
+        <label class="f" style="max-width:240px"><span>Días de vigencia del enlace</span><input id="g-dias" type="number" min="1" max="180"></label>
+        <button class="btn" id="g-guardar">Guardar configuración</button>
+      </div>
+      <div class="card">
+        <h3>Vista previa</h3>
+        <div class="wa-preview">
+          <div class="wa-bubble" id="g-preview"></div>
+          <div class="wa-meta" id="g-preview-num"></div>
+        </div>
+        <div class="sep"></div>
+        <div class="notice">Multiempresa: este número se usa solo en las cotizaciones de esta cuenta.</div>
+      </div>
+
+      <div class="card">
+        <h3>Cuentas y contraseñas</h3>
+        <p class="hint" style="margin-top:0">Cada cuenta tiene un código de recuperación. Anótelo: es el que se pide para restablecer la contraseña sin ayuda del administrador.</p>
+        <div id="cu-lista"></div>
+        <div class="sep"></div>
+        <h3>Almacenamiento</h3>
+        <dl class="kv" id="cu-stats"></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO (protegido) ============ -->
+<section class="view" id="v-productos">
+  <div class="card login" id="pd-bloqueo">
+    <p class="eyebrow">Área restringida</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Solo administradores</h1>
+    <p class="hint">El catálogo lo administra la empresa.</p>
+    <button class="btn ghost" style="margin-top:12px" onclick="mostrar('acceso')">Iniciar sesión</button>
+  </div>
+
+  <div id="pd-contenido" style="display:none">
+    <div class="page-head">
+      <p class="eyebrow">Inventario comercial</p>
+      <h1>Catálogo de productos</h1>
+      <p>Lo que agregue aquí aparece en el catálogo del cliente. Los precios solo se usan dentro del panel: el cliente no los ve hasta recibir su cotización.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <div class="card" style="padding:20px 12px">
+          <h3 style="padding-left:8px">Productos</h3>
+          <div class="barra" style="padding:0 8px">
+            <input id="fl-buscar" placeholder="Buscar por nombre o código…">
+            <select id="fl-depto"></select>
+            <select id="fl-visible">
+              <option value="">Visibles y ocultos</option>
+              <option value="1">Solo visibles</option>
+              <option value="0">Solo ocultos</option>
+            </select>
+            <span class="hint" id="fl-conteo" style="margin:0"></span>
+          </div>
+          <table>
+            <thead><tr><th style="padding-left:14px">Imagen</th><th>Producto</th><th>Departamento</th><th class="num">Precio</th><th>Visible</th><th></th></tr></thead>
+            <tbody id="pd-filas"></tbody>
+          </table>
+          <div class="pag">
+            <button class="btn ghost sm" id="pg-ant">← Anteriores</button>
+            <span class="hint mono" id="pg-info" style="margin:0"></span>
+            <button class="btn ghost sm" id="pg-sig">Siguientes →</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Departamentos</h3>
+          <p class="hint" style="margin-top:0">Agrupe el catálogo como en una tienda: Refrescos, Dulces, Abarrotes, Limpieza…</p>
+          <div class="barra">
+            <input id="dp-nueva" placeholder="Nombre del departamento">
+            <button class="btn ghost sm" id="dp-add">Agregar departamento</button>
+          </div>
+          <div id="dp-lista"></div>
+        </div>
+
+        <div class="card">
+          <h3>Vista del catálogo</h3>
+          <label class="f" style="display:flex;gap:9px;align-items:center">
+            <input type="checkbox" id="op-precios" style="width:auto;margin:0">
+            <span style="margin:0">Mostrar los precios a los clientes</span></label>
+          <p class="hint" style="margin-top:-6px">Interruptor general. Cada producto puede ocultar su precio aunque esto esté activado.</p>
+          <div class="sep"></div>
+          <label class="f" style="display:flex;gap:9px;align-items:center">
+            <input type="checkbox" id="op-destacados" style="width:auto;margin:0">
+            <span style="margin:0">Mostrar la sección de más vendidos</span></label>
+          <div class="grid2">
+            <label class="f"><span>Título de la sección</span><input id="op-titulo" placeholder="Los más vendidos"></label>
+            <label class="f"><span>Costo de envío por defecto</span><input id="op-envio" type="number" min="0" step="0.01">
+              <span class="hint">Se aplica a cada cotización nueva; el administrador puede cambiarlo en cada una.</span></label>
+          </div>
+          <button class="btn" id="op-guardar">Guardar vista del catálogo</button>
+          <div class="sep"></div>
+          <h3>Más vendidos actuales</h3>
+          <div id="op-lista"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="pd-titulo">Nuevo producto</h3>
+        <label class="f"><span>Código o SKU</span><input id="pd-sku" placeholder="LM-140"></label>
+        <label class="f"><span>Nombre</span><input id="pd-nombre" placeholder="Lámina galvanizada"></label>
+        <label class="f"><span>Descripción</span><input id="pd-desc" placeholder="Calibre 26 · 3.66 m"></label>
+        <div class="grid2">
+          <label class="f"><span>Precio de lista</span><input id="pd-precio" type="number" min="0" step="0.01" value="0"></label>
+          <label class="f"><span>Unidad de venta</span><input id="pd-unidad" placeholder="Unidad, caja, m²…" value="Unidad"></label>
+        </div>
+        <label class="f"><span>Departamento</span><select id="pd-depto"></select></label>
+        <label class="f"><span>Imagen del producto (PNG o JPG)</span>
+          <input type="file" id="pd-archivo" accept="image/png,image/jpeg,image/webp">
+          <span class="hint">La imagen se guarda con el producto y es la que ve el cliente. Si no sube ninguna, se usa la ilustración de abajo.</span></label>
+        <label class="f"><span>Ilustración de respaldo</span>
+          <select id="pd-icono">
+            <option value="lamina">Lámina</option><option value="tubo">Tubo</option>
+            <option value="varilla">Varilla</option><option value="perfil">Perfil</option>
+            <option value="soldadura">Caja o consumible</option><option value="tornillo">Tornillería</option>
+          </select></label>
+        <label class="f" style="display:flex;gap:9px;align-items:center">
+          <input type="checkbox" id="pd-activo" checked style="width:auto;margin:0">
+          <span style="margin:0">Visible en el catálogo del cliente</span></label>
+        <label class="f" style="display:flex;gap:9px;align-items:center">
+          <input type="checkbox" id="pd-destacado" style="width:auto;margin:0">
+          <span style="margin:0">Marcar como más vendido</span></label>
+        <label class="f" style="display:flex;gap:9px;align-items:center">
+          <input type="checkbox" id="pd-sinprecio" style="width:auto;margin:0">
+          <span style="margin:0">Ocultar el precio de este producto</span></label>
+        <div class="btn-row">
+          <button class="btn" id="pd-guardar">Guardar producto</button>
+          <button class="btn ghost" id="pd-cancelar" style="display:none">Cancelar edición</button>
+        </div>
+        <div class="sep"></div>
+        <div class="wa-preview" style="background:#F1F5F6;border-color:var(--line)">
+          <p class="eyebrow" style="margin-bottom:8px">Así lo verá el cliente</p>
+          <div class="catalogo" style="grid-template-columns:1fr"><div id="pd-preview"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCESO ============ -->
+<section class="view" id="v-acceso">
+  <div class="card login" id="log-caja">
+    <p class="eyebrow" id="a-eyebrow">Acceso a la plataforma</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Iniciar sesión</h1>
+    <p class="hint" style="margin-bottom:18px">El sistema reconoce la cuenta y muestra únicamente lo que corresponde a su rol.</p>
+    <label class="f"><span>Usuario o correo</span><input id="l-user" autocomplete="username"></label>
+    <label class="f"><span>Contraseña</span><input id="l-pass" type="password" autocomplete="current-password"></label>
+    <button class="btn" id="l-entrar" style="width:100%">Entrar</button>
+    <p style="text-align:center;margin:12px 0 0"><a href="#" id="l-olvide" style="font-size:13.5px">¿Olvidó su contraseña?</a></p>
+    <div class="sep"></div>
+    <p class="eyebrow" style="margin-bottom:8px">Cuentas de demostración</p>
+    <div class="notice">Administrador: <span class="token">admin</span> · <span class="token">admin123</span><br>
+      Ve la bandeja, promociones y configuración.</div>
+    <div class="notice" style="margin-top:8px">Cliente: <span class="token">maria</span> · <span class="token">cliente123</span><br>
+      Ve el catálogo y solo sus propias cotizaciones.</div>
+    <p class="hint">Sin iniciar sesión, cualquier visitante puede pedir una cotización desde el catálogo.</p>
+  </div>
+
+  <div class="card login" id="rec-caja" style="display:none">
+    <p class="eyebrow">Recuperación de contraseña</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Restablecer acceso</h1>
+    <p class="hint" style="margin-bottom:18px">Escriba su usuario o correo y el código de recuperación que le entregó la empresa.</p>
+    <label class="f"><span>Usuario o correo</span><input id="rec-user"></label>
+    <label class="f"><span>Código de recuperación</span><input id="rec-codigo" placeholder="XXXX-XXXX"></label>
+    <label class="f"><span>Nueva contraseña</span><input id="rec-pass" type="password"></label>
+    <label class="f"><span>Repita la nueva contraseña</span><input id="rec-pass2" type="password"></label>
+    <button class="btn" id="rec-guardar" style="width:100%">Cambiar contraseña</button>
+    <p style="text-align:center;margin:12px 0 0"><a href="#" id="rec-volver" style="font-size:13.5px">Volver al inicio de sesión</a></p>
+    <div class="notice" style="margin-top:14px">¿Perdió el código? El administrador puede restablecer su contraseña desde Configuración → Cuentas y contraseñas.</div>
+  </div>
+</section>
+
+<!-- ============ ÁREA DEL CLIENTE ============ -->
+<section class="view" id="v-mis">
+  <div class="card login" id="mis-bloqueo">
+    <p class="eyebrow">Área del cliente</p>
+    <h1 style="font-size:22px;margin-bottom:6px">Consulte sus cotizaciones</h1>
+    <p class="hint">Inicie sesión con su cuenta de cliente para ver el historial de sus solicitudes.</p>
+    <button class="btn" style="margin-top:14px" onclick="mostrar('acceso')">Iniciar sesión</button>
+  </div>
+
+  <div id="mis-contenido" style="display:none">
+    <div class="page-head">
+      <p class="eyebrow">Área del cliente</p>
+      <h1 id="mis-titulo">Mis cotizaciones</h1>
+      <p>Aquí aparecen únicamente las solicitudes hechas con su cuenta. La edición de precios y promociones corresponde a la empresa.</p>
+    </div>
+    <div class="card" style="padding:20px 12px">
+      <table>
+        <thead><tr><th style="padding-left:14px">Folio</th><th>Enviada</th><th class="num">Productos</th><th class="num">Total</th><th>Estado</th><th></th></tr></thead>
+        <tbody id="mis-filas"></tbody>
+      </table>
+    </div>
+    <div class="card" id="mis-detalle" style="display:none"></div>
+  </div>
+</section>
+
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================== ilustraciones de producto (SVG embebido) ================== */
+function foto(tipo){
+  const base = (inner,bg) => "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150"><rect width="200" height="150" fill="${bg}"/>${inner}</svg>`);
+  const s = {
+    lamina: base(`<g fill="none" stroke="#8FA3B0" stroke-width="3"><path d="M20 100q10-16 20 0t20 0 20 0 20 0 20 0 20 0 20 0"/><path d="M20 84q10-16 20 0t20 0 20 0 20 0 20 0 20 0 20 0"/><path d="M20 68q10-16 20 0t20 0 20 0 20 0 20 0 20 0 20 0"/></g><path d="M20 100v14M180 100v14" stroke="#B7C6CF" stroke-width="3"/>`, "#EDF2F4"),
+    tubo: base(`<rect x="34" y="52" width="132" height="46" fill="#C3D0D8" stroke="#8FA3B0" stroke-width="3"/><rect x="34" y="52" width="30" height="46" fill="#9FB2BD" stroke="#8FA3B0" stroke-width="3"/><rect x="42" y="60" width="14" height="30" fill="#EDF2F4" stroke="#8FA3B0" stroke-width="2"/>`, "#F1F5F6"),
+    varilla: base(`<g stroke="#A6836A" stroke-width="9" stroke-linecap="round"><path d="M28 62h144M28 92h144"/></g><g stroke="#EDF2F4" stroke-width="3"><path d="M40 56l-8 12M70 56l-8 12M100 56l-8 12M130 56l-8 12M160 56l-8 12M40 86l-8 12M70 86l-8 12M100 86l-8 12M130 86l-8 12M160 86l-8 12"/></g>`, "#F4F0EC"),
+    perfil: base(`<path d="M60 34h84v18H82v46h62v18H60z" fill="#C3D0D8" stroke="#8FA3B0" stroke-width="3"/>`, "#EEF3F5"),
+    soldadura: base(`<rect x="52" y="48" width="96" height="62" fill="#D9BE8C" stroke="#A98F5E" stroke-width="3"/><path d="M52 68h96" stroke="#A98F5E" stroke-width="3"/><g stroke="#7C6845" stroke-width="4" stroke-linecap="round"><path d="M70 84h60M70 96h60"/></g>`, "#F6F1E7"),
+    tornillo: base(`<path d="M84 36h32v22H84z" fill="#B9C6CE" stroke="#8FA3B0" stroke-width="3"/><path d="M92 58h16l-8 58z" fill="#C9D5DC" stroke="#8FA3B0" stroke-width="3"/><g stroke="#8FA3B0" stroke-width="2"><path d="M93 70h14M94 82h12M96 94h8"/></g>`, "#EFF3F5"),
+  };
+  return s[tipo];
+}
+
+/* ================== datos ================== */
+let catalogo = [
+  {sku:"LM-140", nombre:"Lámina galvanizada", desc:"Calibre 26 · 3.66 m", precio:18.40, unidad:"Lámina", icono:"lamina", img:"", activo:true},
+  {sku:"TB-200", nombre:'Tubo estructural 2"', desc:"2\" x 2\" · pared 1.5 mm", precio:32.75, unidad:"Tubo", icono:"tubo", img:"", activo:true},
+  {sku:"VR-38",  nombre:"Varilla corrugada #3", desc:"9 m · grado 40", precio:7.90, unidad:"Varilla", icono:"varilla", img:"", activo:true},
+  {sku:"PF-500", nombre:'Perfil C 6"', desc:"6\" x 6 m · negro", precio:54.20, unidad:"Perfil", icono:"perfil", img:"", activo:true},
+  {sku:"SL-010", nombre:"Soldadura 6013", desc:"Caja de 20 kg", precio:71.00, unidad:"Caja", icono:"soldadura", img:"", activo:true},
+  {sku:"TR-025", nombre:"Tornillo autoperforante", desc:'Caja 500 u · 1"', precio:12.60, unidad:"Caja", icono:"tornillo", img:"", activo:true},
+];
+const imagenDe = p => imagenes[p.sku] || p.img || foto(p.icono || "tornillo");
+const visibles = () => catalogo.filter(p=>p.activo);
+
+const empresa = {
+  nombre:"Aceros y Perfiles del Valle", logo:"", correo:"ventas@acerosvalle.hn",
+  telefono:"+504 2200 1100", pais:"Honduras", direccion:"Blvd. Suyapa, Tegucigalpa",
+  whatsapp:"50422001100", horario:"Lunes a viernes, 8:00 a 17:00",
+  activo:true, diasVigencia:15,
+  mensaje:"Hola {cliente}, hemos recibido su solicitud de cotización {folio}.\n\nPuede revisarla aquí:\n{enlace}\n\nGracias por contactar a {empresa}."
+};
+
+let promociones = [
+  {id:1, nombre:"Lleve 5 y pague 4", tipo:"cantidad", x:5, y:1, sku:"VR-38",
+   alcance:"todos", valor:"", hasta:fechaEn(45), activa:true},
+  {id:2, nombre:"15% en láminas · Honduras", tipo:"porcentaje", pct:15, sku:"LM-140",
+   alcance:"estado", valor:"Honduras", hasta:fechaEn(20), activa:true},
+];
+let promoId = 2;
+
+const cotizaciones = [];
+let consecutivo = 0;
+const pedido = {};      // sku -> cantidad
+let abierta = null;
+let esAdmin = false;
+
+/* ================== guardado permanente ================== */
+const CLAVE = "smartquote.datos";
+let modoMemoria = false, memoria = null, ultimoGuardado = "";
+
+function paquete(){ return {catalogo, promociones, cotizaciones, usuarios, empresa, consecutivo, promoId, departamentos, opciones}; }
+function guardar(){
+  const t = JSON.stringify(paquete());
+  if(t === ultimoGuardado) return;
+  ultimoGuardado = t;
+  try{ localStorage.setItem(CLAVE, t); }
+  catch(e){ modoMemoria = true; memoria = t; }
+}
+function restaurar(){
+  let d = null;
+  try{ const t = localStorage.getItem(CLAVE); d = t ? JSON.parse(t) : null; }
+  catch(e){ modoMemoria = true; d = memoria ? JSON.parse(memoria) : null; }
+  if(!d) return;
+  if(Array.isArray(d.catalogo) && d.catalogo.length) catalogo = d.catalogo;
+  if(Array.isArray(d.promociones)) promociones = d.promociones;
+  if(Array.isArray(d.cotizaciones)){ cotizaciones.length = 0; d.cotizaciones.forEach(q=>cotizaciones.push(q)); }
+  if(Array.isArray(d.usuarios) && d.usuarios.length){ usuarios.length = 0; d.usuarios.forEach(u=>usuarios.push(u)); }
+  if(d.empresa) Object.assign(empresa, d.empresa);
+  if(typeof d.consecutivo === "number") consecutivo = d.consecutivo;
+  if(typeof d.promoId === "number") promoId = d.promoId;
+  if(Array.isArray(d.departamentos) && d.departamentos.length) departamentos = d.departamentos;
+  if(d.opciones) Object.assign(opciones, d.opciones);
+  catalogo.forEach(p=>{ if(!p.depto) p.depto = "General"; });
+  departamentos = [...new Set([...departamentos, ...catalogo.map(p=>p.depto)])];
+}
+
+/* ---------- departamentos y opciones del catálogo ---------- */
+let departamentos = ["General"];
+const opciones = { mostrarPrecios:false, envioDefecto:0, verDestacados:true, tituloDestacados:"Los más vendidos" };
+
+/* ---------- imágenes de producto (IndexedDB: soporta miles de productos) ---------- */
+const imagenes = {};          // sku -> dataURL en memoria
+let bd = null;
+function abrirBD(){
+  return new Promise(res=>{
+    if(!window.indexedDB){ res(null); return; }
+    const r = indexedDB.open("smartquote-img", 1);
+    r.onupgradeneeded = ()=> r.result.createObjectStore("img");
+    r.onsuccess = ()=> res(r.result);
+    r.onerror = ()=> res(null);
+  });
+}
+function imgGuardar(sku, dato){
+  imagenes[sku] = dato;
+  if(!bd) return;
+  try{ bd.transaction("img","readwrite").objectStore("img").put(dato, sku); }catch(e){}
+}
+function imgBorrar(sku){
+  delete imagenes[sku];
+  if(!bd) return;
+  try{ bd.transaction("img","readwrite").objectStore("img").delete(sku); }catch(e){}
+}
+function imgCargarTodas(){
+  return new Promise(res=>{
+    if(!bd){ res(); return; }
+    try{
+      const st = bd.transaction("img","readonly").objectStore("img");
+      const cur = st.openCursor();
+      cur.onsuccess = e=>{ const c = e.target.result; if(c){ imagenes[c.key] = c.value; c.continue(); } else res(); };
+      cur.onerror = ()=> res();
+    }catch(e){ res(); }
+  });
+}
+
+/* ================== utilidades ================== */
+const dom = id => document.getElementById(id);
+const money = n => "$" + n.toLocaleString("es-HN",{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmt = d => new Date(d).toLocaleDateString("es-HN",{day:"2-digit",month:"short",year:"numeric"});
+const fmtHora = d => new Date(d).toLocaleString("es-HN",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
+const escapar = s => String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function fechaEn(dias){ return new Date(Date.now()+dias*864e5).toISOString().slice(0,10); }
+function toast(t){ const e=dom("toast"); e.textContent=t; e.classList.add("on"); clearTimeout(e._t); e._t=setTimeout(()=>e.classList.remove("on"),3200); }
+function tokenNuevo(){ return [...crypto.getRandomValues(new Uint8Array(12))].map(b=>b.toString(16).padStart(2,"0")).join(""); }
+function enlaceDe(q){ return "empresa.com/cotizacion/"+q.folio+"?t="+q.token.slice(0,8); }
+function pill(e){ const c={"Nueva":"s-nueva","En revisión":"s-revision","Enviada":"s-enviada","Aceptada":"s-aceptada","Vencida":"s-vencida"}[e]||"s-nueva"; return `<span class="pill ${c}">${e}</span>`; }
+function burbuja(el,txt){ el.innerHTML = txt.split("\n").map(l=> l.startsWith("empresa.com")?`<span class="lnk">${l}</span>`:escapar(l)).join("<br>"); }
+function abrirWhatsApp(num,txt){
+  if(!empresa.activo){ toast("WhatsApp está desactivado en la configuración."); return; }
+  window.open("https://wa.me/"+num.replace(/\D/g,"")+"?text="+encodeURIComponent(txt),"_blank","noopener");
+  toast("Abriendo WhatsApp "+(/Mobi|Android/i.test(navigator.userAgent)?"en la aplicación":"Web")+"…");
+}
+
+/* ================== promociones: vigencia y cálculo ================== */
+const vigente = p => p.activa && new Date(p.hasta+"T23:59:59") >= new Date();
+function promosPara(q){
+  return promociones.filter(p=>{
+    if(!vigente(p)) return false;
+    if(p.alcance==="todos") return true;
+    if(p.alcance==="cliente") return (q.cliente+" "+q.empresa).toLowerCase().includes(p.valor.toLowerCase());
+    return (q.ciudad+" "+q.pais).toLowerCase().includes(p.valor.toLowerCase());
+  });
+}
+function promosDeCatalogo(sku){ return promociones.filter(p=> vigente(p) && (!p.sku || p.sku===sku)); }
+function textoPromo(p){
+  const base = p.tipo==="cantidad" ? `Compre ${p.x}, reciba ${p.y} gratis` : `${p.pct}% de descuento`;
+  return base;
+}
+function subtotal(l){
+  const p = l.promoId ? promociones.find(x=>x.id===l.promoId) : null;
+  let cobradas = l.cantidad, pct = l.descuento||0;
+  if(p && vigente(p)){
+    if(p.tipo==="cantidad"){ cobradas = l.cantidad - Math.floor(l.cantidad/(p.x+p.y))*p.y; }
+    else pct = Math.max(pct, p.pct);
+  }
+  return l.precio*cobradas*(1-pct/100);
+}
+const sumaLineas = q => q.lineas.reduce((s,l)=>s+subtotal(l),0);
+const envioDe = q => +(q.envio||0);
+const totalDe = q => sumaLineas(q) + envioDe(q);
+
+/* ================== cuentas, sesión y navegación por rol ================== */
+const usuarios = [
+  {usuario:"admin", clave:"admin123", rol:"admin", nombre:"Carlos Padilla", correo:"ventas@acerosvalle.hn"},
+  {usuario:"maria", clave:"cliente123", rol:"cliente", nombre:"María Rentería",
+   correo:"maria@acerosdelnorte.hn", empresa:"Aceros del Norte S.A.",
+   telefono:"+504 2234 5566", whatsapp:"+504 9988 7766", ciudad:"Tegucigalpa", pais:"Honduras"},
+];
+let sesion = {rol:"invitado"};
+
+/* qué vistas puede abrir cada rol */
+const permisos = {
+  invitado:["cliente","acceso","mis"],
+  cliente: ["cliente","mis","acceso"],
+  admin:   ["panel","promos","config","cliente","acceso","productos"],
+};
+/* qué pestañas ve cada rol */
+const menu = {
+  invitado:[["cliente","Solicitar cotización"]],
+  cliente: [["cliente","Solicitar cotización"],["mis","Mis cotizaciones"]],
+  admin:   [["panel","Panel administrativo"],["productos","Catálogo"],["promos","Promociones"],["config","Configuración"],["cliente","Ver como cliente"]],
+};
+let vistaActual = "cliente";
+
+function pintarTabs(){
+  dom("tabs").innerHTML = menu[sesion.rol].map(([v,t])=>
+    `<button role="tab" data-view="${v}" aria-selected="${v===vistaActual}">${t}</button>`).join("");
+  dom("tabs").querySelectorAll("button").forEach(b=> b.onclick = ()=> mostrar(b.dataset.view));
+}
+function mostrar(v){
+  if(!permisos[sesion.rol].includes(v)){
+    toast("Esa sección es exclusiva del administrador.");
+    v = "acceso";
+  }
+  vistaActual = v;
+  document.querySelectorAll(".view").forEach(s=> s.classList.toggle("on", s.id==="v-"+v));
+  pintarTabs();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function aplicarSesion(){
+  esAdmin = sesion.rol==="admin";
+  const etiqueta = {invitado:"VISITANTE", cliente:"CLIENTE", admin:"ADMINISTRADOR"}[sesion.rol];
+  dom("sesion").textContent = "SESIÓN: " + etiqueta + (sesion.nombre ? " · " + sesion.nombre.toUpperCase() : "");
+  dom("salir").style.display = sesion.rol==="invitado" ? "none" : "inline-block";
+  dom("entrar-nav").style.display = sesion.rol==="invitado" ? "inline-block" : "none";
+
+  dom("p-login").style.display = esAdmin ? "none" : "block";
+  dom("p-lista").style.display = esAdmin && !abierta ? "block" : "none";
+  dom("p-detalle").style.display = esAdmin && abierta ? "block" : "none";
+  dom("pr-bloqueo").style.display = esAdmin ? "none" : "block";
+  dom("pr-contenido").style.display = esAdmin ? "block" : "none";
+  dom("cf-bloqueo").style.display = esAdmin ? "none" : "block";
+  dom("cf-contenido").style.display = esAdmin ? "block" : "none";
+  dom("pd-bloqueo").style.display = esAdmin ? "none" : "block";
+  dom("pd-contenido").style.display = esAdmin ? "block" : "none";
+
+  const esCliente = sesion.rol==="cliente";
+  dom("mis-bloqueo").style.display = esCliente ? "none" : "block";
+  dom("mis-contenido").style.display = esCliente ? "block" : "none";
+  if(esCliente){ dom("mis-titulo").textContent = "Cotizaciones de " + sesion.nombre; pintarMisCotizaciones(); }
+  pintarTabs();
+}
+dom("entrar-nav").onclick = ()=> mostrar("acceso");
+dom("l-entrar").onclick = () => {
+  const id = dom("l-user").value.trim().toLowerCase(), clave = dom("l-pass").value;
+  const u = usuarios.find(x=> (x.usuario===id || x.correo.toLowerCase()===id) && x.clave===clave);
+  if(!u){ toast("Usuario o contraseña incorrectos."); return; }
+  sesion = u; abierta = null;
+  dom("l-user").value=""; dom("l-pass").value="";
+  if(u.rol==="admin"){ pintarLista(); pintarPromos(); }
+  aplicarSesion();
+  mostrar(u.rol==="admin" ? "panel" : "mis");
+  toast("Bienvenido, " + u.nombre + ".");
+};
+dom("l-pass").addEventListener("keydown", e=>{ if(e.key==="Enter") dom("l-entrar").click(); });
+dom("l-olvide").onclick = e=>{ e.preventDefault(); dom("log-caja").style.display="none"; dom("rec-caja").style.display="block"; };
+dom("rec-volver").onclick = e=>{ e.preventDefault(); dom("rec-caja").style.display="none"; dom("log-caja").style.display="block"; };
+dom("rec-guardar").onclick = ()=>{
+  const id = dom("rec-user").value.trim().toLowerCase();
+  const cod = dom("rec-codigo").value.trim().toUpperCase();
+  const n1 = dom("rec-pass").value, n2 = dom("rec-pass2").value;
+  const u = usuarios.find(x=> String(x.usuario).toLowerCase()===id || String(x.correo).toLowerCase()===id);
+  if(!u){ toast("No encontramos esa cuenta."); return; }
+  if(String(u.codigo).toUpperCase()!==cod){ toast("El código de recuperación no coincide."); return; }
+  if(!n1 || n1.length<4){ toast("La nueva contraseña debe tener al menos 4 caracteres."); return; }
+  if(n1!==n2){ toast("Las contraseñas no coinciden."); return; }
+  u.clave = n1; u.codigo = codigoNuevo(); guardar();
+  ["rec-user","rec-codigo","rec-pass","rec-pass2"].forEach(i=>dom(i).value="");
+  dom("rec-caja").style.display="none"; dom("log-caja").style.display="block";
+  if(esAdmin) pintarCuentas();
+  toast("Contraseña cambiada. Ya puede iniciar sesión.");
+};
+dom("salir").onclick = () => {
+  sesion = {rol:"invitado"}; abierta = null; aplicarSesion(); mostrar("cliente"); toast("Sesión cerrada.");
+};
+
+/* ================== área del cliente ================== */
+function misCotizaciones(){
+  const c = (sesion.correo||"").toLowerCase();
+  return cotizaciones.filter(q=> (q.cuenta||"").toLowerCase()===c || q.correo.toLowerCase()===c);
+}
+const preciosLiberados = q => ["Enviada","Aceptada"].includes(q.estado);
+function pintarMisCotizaciones(){
+  const lista = misCotizaciones();
+  dom("mis-filas").innerHTML = lista.length ? lista.map(q=>`
+    <tr class="clickable" data-f="${q.folio}">
+      <td style="padding-left:14px"><span class="mono" style="font-weight:600">${q.folio}</span></td>
+      <td class="mono" style="font-size:12.5px">${fmtHora(q.creada)}</td>
+      <td class="num">${q.lineas.reduce((s,l)=>s+l.cantidad,0)}</td>
+      <td class="num">${preciosLiberados(q)? money(totalDe(q)) : "<span class='hint'>En elaboración</span>"}</td>
+      <td>${pill(q.estado)}</td>
+      <td class="num"><span class="hint">Ver detalle →</span></td>
+    </tr>`).join("")
+    : `<tr><td colspan="6" class="empty">Aún no ha enviado solicitudes. Arme su pedido en el catálogo.</td></tr>`;
+  dom("mis-filas").querySelectorAll("tr.clickable").forEach(tr=> tr.onclick = ()=> verMia(tr.dataset.f));
+  dom("mis-detalle").style.display = "none";
+}
+function verMia(folio){
+  const q = cotizaciones.find(x=>x.folio===folio);
+  const ver = preciosLiberados(q);
+  const d = dom("mis-detalle");
+  d.style.display = "block";
+  d.innerHTML = `
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
+      <span class="folio big">${q.folio}</span>${pill(q.estado)}
+      <span class="hint" style="margin-left:auto">Vence ${fmt(q.vence)}</span>
+    </div>
+    ${ver ? "" : `<div class="notice warn" style="margin-bottom:16px">Su solicitud está en revisión. Los precios y descuentos aparecerán aquí cuando la empresa le envíe la cotización.</div>`}
+    <table><thead><tr><th>Producto</th><th class="num">Cant.</th>
+      ${ver?`<th class="num">Precio</th><th>Promoción</th><th class="num">Subtotal</th>`:""}</tr></thead>
+    <tbody>${q.lineas.map(l=>{
+      const p = l.promoId ? promociones.find(x=>x.id===l.promoId) : null;
+      const prod = catalogo.find(x=>x.sku===l.sku);
+      return `<tr><td>${escapar(l.nombre)}<div class="hint mono">${l.sku}</div></td>
+        <td class="num">${l.cantidad} ${escapar(prod?.unidad||"u")}</td>
+        ${ver?`<td class="num">${money(l.precio)}</td>
+        <td>${p?escapar(p.nombre):"<span class='hint'>—</span>"}</td>
+        <td class="num">${money(subtotal(l))}</td>`:""}</tr>`;}).join("")}</tbody></table>
+    ${ver?`<div style="display:flex;justify-content:flex-end;gap:26px;margin-top:14px;align-items:baseline">
+      <span class="eyebrow" style="margin:0">Subtotal</span><span class="mono">${money(sumaLineas(q))}</span></div>
+      ${envioDe(q)>0?`<div style="display:flex;justify-content:flex-end;gap:26px;margin-top:6px;align-items:baseline">
+        <span class="eyebrow" style="margin:0">Envío${q.envioNota?" · "+escapar(q.envioNota):""}</span>
+        <span class="mono">${money(envioDe(q))}</span></div>`:""}
+      <div style="display:flex;justify-content:flex-end;gap:26px;margin-top:8px;align-items:baseline">
+      <span class="eyebrow" style="margin:0">Total</span>
+      <span class="mono" style="font-size:22px;font-weight:600">${money(totalDe(q))}</span></div>`:""}
+    <div class="sep"></div>
+    <div class="notice">Solo lectura. Para cambios, escriba a la empresa por WhatsApp con el folio ${q.folio}.</div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn wa" id="mis-wa">Escribir a la empresa</button></div>`;
+  dom("mis-wa").onclick = ()=> abrirWhatsApp(empresa.whatsapp,
+    "Hola, consulto por mi cotización "+q.folio+" ("+q.cliente+").");
+  d.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+/* ================== catálogo del cliente ================== */
+let deptoCliente = "", buscaCliente = "";
+function pintarChips(){
+  const usados = [...new Set(visibles().map(p=>p.depto||"General"))].sort();
+  dom("k-chips").innerHTML = [["","Todos"],...usados.map(d=>[d,d])].map(([v,t])=>
+    `<button class="chip" data-d="${escapar(v)}" aria-pressed="${deptoCliente===v}">${escapar(t)}</button>`).join("");
+  dom("k-chips").querySelectorAll(".chip").forEach(b=> b.onclick = ()=>{ deptoCliente=b.dataset.d; pintarChips(); pintarCatalogo(); });
+}
+dom("k-buscar").addEventListener("input", e=>{ buscaCliente = e.target.value.trim().toLowerCase(); pintarCatalogo(); });
+function pintarCatalogo(){
+  const lista = visibles().filter(p=>{
+    if(deptoCliente && (p.depto||"General")!==deptoCliente) return false;
+    if(buscaCliente && !((p.nombre+" "+p.sku+" "+p.desc).toLowerCase().includes(buscaCliente))) return false;
+    return true;
+  });
+  dom("k-conteo").textContent = lista.length + " producto(s)";
+  const deptos = [...new Set(lista.map(p=>p.depto||"General"))].sort();
+  const destacados = lista.filter(p=>p.destacado);
+  const bloqueTop = (opciones.verDestacados && destacados.length)
+    ? `<div class="bloque"><h3 class="seccion">${escapar(opciones.tituloDestacados||"Los más vendidos")} <small>${destacados.length} producto(s)</small></h3>
+       <div class="catalogo">${destacados.map(p=> tarjeta(p, pedido[p.sku])).join("")}</div></div>` : "";
+  dom("catalogo").innerHTML = lista.length ? bloqueTop + deptos.map(d=>{
+    const items = lista.filter(p=>(p.depto||"General")===d);
+    return `<div class="bloque"><h3 class="seccion">${escapar(d)} <small>${items.length} producto(s)</small></h3>
+      <div class="catalogo">${items.map(p=> tarjeta(p, pedido[p.sku])).join("")}</div></div>`;
+  }).join("")
+    : `<p class="hint">No hay productos que coincidan con su búsqueda.</p>`;
+  dom("catalogo").querySelectorAll("[data-mas]").forEach(b=> b.onclick = ()=>{ const s=b.dataset.mas; pedido[s]=(pedido[s]||0)+1; pintarCatalogo(); pintarResumen(); });
+  dom("catalogo").querySelectorAll("[data-menos]").forEach(b=> b.onclick = ()=>{ const s=b.dataset.menos; pedido[s]--; if(pedido[s]<1) delete pedido[s]; pintarCatalogo(); pintarResumen(); });
+  dom("catalogo").querySelectorAll("[data-cant]").forEach(inp=>{
+    inp.onchange = ()=>{
+      const s = inp.dataset.cant, n = Math.floor(+inp.value);
+      if(!n || n<1) delete pedido[s]; else pedido[s] = n;
+      pintarCatalogo(); pintarResumen();
+    };
+    inp.onkeydown = e=>{ if(e.key==="Enter") inp.blur(); };
+  });
+}
+const precioVisible = p => opciones.mostrarPrecios && !p.ocultarPrecio;
+function tarjeta(p, q, demo){
+  const promo = promosDeCatalogo(p.sku).find(x=>x.sku===p.sku);
+  const control = q
+    ? `<div class="stepper">
+         <button data-menos="${p.sku}" aria-label="Quitar uno">−</button>
+         <input class="val" type="number" min="0" step="1" value="${q}" data-cant="${p.sku}" aria-label="Cantidad">
+         <button data-mas="${p.sku}" aria-label="Agregar uno">+</button>
+       </div>`
+    : `<button class="add" ${demo?"disabled":`data-mas="${p.sku}"`}>Agregar al pedido</button>`;
+  return `<article class="prod ${q?"activo":""}">
+    <div class="foto"><img src="${imagenDe(p)}" alt="${escapar(p.nombre)}" loading="lazy"></div>
+    <div class="cuerpo">
+      <span class="sku">${escapar(p.sku)}</span>
+      <span class="nom">${p.destacado?'<i style="font-style:normal;color:var(--amber)">★</i> ':""}${escapar(p.nombre)}</span>
+      <span class="desc">${escapar(p.desc)}</span>
+      <span class="desc mono" style="font-size:11.5px">Se cotiza por: ${escapar(p.unidad||"Unidad")}</span>
+      ${precioVisible(p)?`<span class="precio">${money(p.precio)}</span>`:""}
+      ${promo?`<span class="promo-tag">${escapar(textoPromo(promo))}</span>`:""}
+      <div class="pie">${control}</div>
+    </div></article>`;
+}
+function pintarResumen(){
+  const items = Object.entries(pedido);
+  dom("c-resumen").innerHTML = items.length
+    ? items.map(([sku,q])=>{ const p=catalogo.find(x=>x.sku===sku);
+        const monto = precioVisible(p) ? `<span class="mono">${money(p.precio*q)}</span>` : "";
+        return `<li><span>${escapar(p.nombre)} <span class="q">×${q}</span></span>${monto||`<span class="q">${q} ${escapar(p.unidad||"u")}</span>`}</li>`; }).join("")
+    : `<li style="border:0;color:var(--slate);display:block">Su pedido está vacío. Agregue productos desde el catálogo.</li>`;
+  if(opciones.mostrarPrecios){
+    const t = items.reduce((s,[sku,q])=>{ const p=catalogo.find(x=>x.sku===sku);
+      return s + (p && precioVisible(p) ? p.precio*q : 0); }, 0);
+    dom("c-total").textContent = money(t);
+  } else {
+    dom("c-total").textContent = items.reduce((s,[,q])=>s+q,0) + " u";
+  }
+}
+
+dom("c-generar").onclick = () => {
+  const cliente = dom("c-nombre").value.trim(), wa = dom("c-wa").value.trim();
+  if(!Object.keys(pedido).length){ toast("Agregue al menos un producto al pedido."); return; }
+  if(!cliente || !wa){ toast("Falta el nombre o el WhatsApp de contacto."); return; }
+
+  consecutivo++;
+  const q = {
+    folio: "QT-"+new Date().getFullYear()+"-"+String(consecutivo).padStart(5,"0"),
+    token: tokenNuevo(), creada: new Date(), vence: new Date(Date.now()+empresa.diasVigencia*864e5),
+    cliente, empresa: dom("c-empresa").value, pais: dom("c-pais").value, ciudad: dom("c-ciudad").value,
+    telefono: dom("c-tel").value, whatsapp: wa, correo: dom("c-mail").value,
+    comentarios: dom("c-coment").value, responsable:"Sin asignar", estado:"Nueva", leida:false,
+    cuenta: sesion.rol==="cliente" ? sesion.correo : dom("c-mail").value,
+    lineas: Object.entries(pedido).map(([sku,cant])=>{ const p=catalogo.find(x=>x.sku===sku);
+      return {sku, nombre:p.nombre, precio:p.precio, cantidad:cant, descuento:0, promoId:null}; }),
+    envio: +(opciones.envioDefecto||0), envioNota:"",
+    historial:[{t:new Date(), texto:"Solicitud recibida en el WhatsApp de la empresa"}], notas:[]
+  };
+  cotizaciones.unshift(q);
+  guardar();
+
+  const texto = "Nueva solicitud de cotización " + q.folio + "\n\n" +
+    "Cliente: " + q.cliente + "\nEmpresa: " + q.empresa + "\nUbicación: " + q.ciudad + ", " + q.pais +
+    "\nWhatsApp: " + q.whatsapp + "\nCorreo: " + q.correo + "\n\nProductos:\n" +
+    q.lineas.map(l=>"• "+l.nombre+" ×"+l.cantidad).join("\n") +
+    (q.comentarios ? "\n\nComentarios: "+q.comentarios : "") +
+    "\n\nSeguimiento:\n" + enlaceDe(q);
+
+  dom("c-recibo").style.display="block";
+  dom("r-folio").textContent = q.folio;
+  dom("r-link").textContent = enlaceDe(q);
+  dom("r-vence").textContent = fmt(q.vence)+" · "+empresa.diasVigencia+" días";
+  burbuja(dom("r-msg"), texto);
+  dom("r-num").textContent = "Para +"+empresa.whatsapp+" · "+empresa.nombre;
+  dom("r-wa").onclick = ()=> abrirWhatsApp(empresa.whatsapp, texto);
+  dom("c-recibo").scrollIntoView({behavior:"smooth",block:"center"});
+  abrirWhatsApp(empresa.whatsapp, texto);
+
+  for(const k in pedido) delete pedido[k];
+  pintarCatalogo(); pintarResumen(); pintarLista();
+  if(sesion.rol==="cliente") pintarMisCotizaciones();
+};
+
+/* ================== bandeja ================== */
+function pintarLista(){
+  const nuevas = cotizaciones.filter(q=>!q.leida).length;
+  dom("p-aviso").textContent = nuevas
+    ? nuevas + (nuevas===1 ? " solicitud nueva sin abrir." : " solicitudes nuevas sin abrir.")
+    : "Sin solicitudes pendientes de abrir.";
+  const tb = dom("p-filas");
+  if(!cotizaciones.length){ tb.innerHTML = `<tr><td colspan="7" class="empty">Todavía no llega ninguna solicitud.</td></tr>`; return; }
+  tb.innerHTML = cotizaciones.map((q,i)=>`
+    <tr class="clickable" data-i="${i}">
+      <td style="padding-left:14px">${q.leida?"":'<span class="new-dot"></span>'}<span class="mono" style="font-weight:600">${q.folio}</span></td>
+      <td>${escapar(q.cliente)}</td><td>${escapar(q.empresa)}</td>
+      <td>${escapar(q.ciudad)}, ${q.pais}</td>
+      <td class="mono" style="font-size:12.5px">${fmtHora(q.creada)}</td>
+      <td class="num">${money(totalDe(q))}</td><td>${pill(q.estado)}</td>
+    </tr>`).join("");
+  tb.querySelectorAll("tr.clickable").forEach(tr=> tr.onclick = ()=> abrirDetalle(cotizaciones[+tr.dataset.i]));
+}
+
+/* ================== detalle ================== */
+function registrar(q,texto){ q.historial.unshift({t:new Date(),texto}); guardar(); if(abierta===q) pintarHistorial(q); }
+function abrirDetalle(q){
+  if(!esAdmin){ toast("Necesita iniciar sesión como administrador."); return; }
+  abierta = q; q.leida = true;
+  mostrar("panel"); aplicarSesion();
+  dom("d-folio").textContent = q.folio;
+  dom("d-estado").innerHTML = pill(q.estado);
+  dom("d-cambiar").value = q.estado;
+  dom("d-info").innerHTML = `
+    <dt>Recibida</dt><dd>${fmtHora(q.creada)}</dd>
+    <dt>Cliente</dt><dd>${escapar(q.cliente)}</dd>
+    <dt>Empresa</dt><dd>${escapar(q.empresa)}</dd>
+    <dt>Contacto</dt><dd>${escapar(q.correo)} · ${escapar(q.telefono)}</dd>
+    <dt>WhatsApp</dt><dd class="mono">${escapar(q.whatsapp)}</dd>
+    <dt>Ubicación</dt><dd>${escapar(q.ciudad)}, ${q.pais}</dd>
+    <dt>Responsable</dt><dd>${q.responsable}</dd>
+    <dt>Comentarios</dt><dd>${escapar(q.comentarios)||"<span style='color:var(--slate);font-weight:400'>Sin comentarios</span>"}</dd>`;
+  dom("d-link").textContent = enlaceDe(q);
+  dom("d-token").textContent = q.token;
+  dom("d-vence").textContent = fmt(q.vence);
+  dom("d-catalogo").innerHTML = catalogo.map(p=>`<option value="${p.sku}">${escapar(p.nombre)} · ${money(p.precio)}</option>`).join("");
+  pintarLineas(q); pintarHistorial(q); pintarMensaje(q); pintarPromosCliente(q);
+  window.scrollTo({top:0});
+}
+dom("d-volver").onclick = ()=>{ abierta=null; aplicarSesion(); pintarLista(); };
+
+function pintarLineas(q){
+  const disp = promosPara(q);
+  dom("d-lineas").innerHTML = q.lineas.map((l,i)=>{
+    const opts = disp.filter(p=> !p.sku || p.sku===l.sku);
+    return `<tr>
+      <td>${escapar(l.nombre)}<div class="hint mono">${l.sku}</div></td>
+      <td class="num"><input class="w-70" type="number" min="1" value="${l.cantidad}" data-f="cantidad" data-i="${i}"></td>
+      <td class="num"><input class="w-90" type="number" min="0" step="0.01" value="${l.precio}" data-f="precio" data-i="${i}"></td>
+      <td><select data-f="promoId" data-i="${i}">
+        <option value="">Sin promoción</option>
+        ${opts.map(p=>`<option value="${p.id}" ${l.promoId===p.id?"selected":""}>${escapar(p.nombre)}</option>`).join("")}
+      </select></td>
+      <td class="num"><input class="w-70" type="number" min="0" max="100" value="${l.descuento}" data-f="descuento" data-i="${i}"></td>
+      <td class="num">${money(subtotal(l))}</td></tr>`;
+  }).join("");
+  dom("d-lineas").querySelectorAll("input,select").forEach(el=>{
+    el.onchange = e=>{
+      const l = q.lineas[+e.target.dataset.i], f = e.target.dataset.f;
+      l[f] = f==="promoId" ? (e.target.value? +e.target.value : null) : Math.max(0,+e.target.value||0);
+      pintarLineas(q);
+      registrar(q, f==="promoId"
+        ? (l.promoId ? "Promoción aplicada a «"+l.nombre+"»" : "Promoción retirada de «"+l.nombre+"»")
+        : "Se actualizó «"+l.nombre+"» ("+f+")");
+    };
+  });
+  dom("d-subtotal").textContent = money(sumaLineas(q));
+  dom("d-envio").value = envioDe(q);
+  dom("d-envio-nota").value = q.envioNota||"";
+  dom("d-total").textContent = money(totalDe(q));
+}
+function pintarPromosCliente(q){
+  const ps = promosPara(q);
+  dom("d-promos").innerHTML = ps.length ? ps.map(p=>`
+    <div class="promo-card"><div class="body">
+      <h4>${escapar(p.nombre)}</h4>
+      <div class="hint" style="margin:0">${escapar(textoPromo(p))} · ${p.sku? p.sku : "todos los productos"} · vence ${fmt(p.hasta)}</div>
+    </div><button class="btn ghost sm" data-p="${p.id}">Aplicar</button></div>`).join("")
+    : `<p class="hint" style="margin:0">No hay promociones vigentes para este cliente.</p>`;
+  dom("d-promos").querySelectorAll("[data-p]").forEach(b=> b.onclick = ()=>{
+    const p = promociones.find(x=>x.id===+b.dataset.p);
+    let n=0;
+    q.lineas.forEach(l=>{ if(!p.sku || p.sku===l.sku){ l.promoId=p.id; n++; } });
+    pintarLineas(q);
+    toast(n? "Promoción aplicada a "+n+" línea(s)." : "Ningún producto de esta cotización califica.");
+    if(n) registrar(q,"Promoción «"+p.nombre+"» aplicada");
+  });
+}
+function pintarHistorial(q){ dom("d-historial").innerHTML = q.historial.map(h=>`<li><time>${fmtHora(h.t)}</time>${escapar(h.texto)}</li>`).join(""); }
+function mensajeDe(q){
+  return empresa.mensaje.replaceAll("{cliente}",q.cliente).replaceAll("{folio}","#"+q.folio)
+    .replaceAll("{enlace}",enlaceDe(q)).replaceAll("{empresa}",empresa.nombre);
+}
+/* arma sola la cotización completa lista para enviar por WhatsApp */
+function cotizacionTexto(q){
+  const lineas = q.lineas.map(l=>{
+    const pr = l.promoId ? promociones.find(x=>x.id===l.promoId) : null;
+    const prod = catalogo.find(x=>x.sku===l.sku);
+    return "• "+l.nombre+"\n   "+l.cantidad+" "+(prod?.unidad||"u")+" x "+money(l.precio)+
+      (pr? "  ("+textoPromo(pr)+")":"")+"  =  "+money(subtotal(l));
+  }).join("\n");
+  return mensajeDe(q)+"\n\n"+
+    "*COTIZACIÓN "+q.folio+"*\n"+
+    "Cliente: "+q.cliente+(q.empresa? " · "+q.empresa:"")+"\n"+
+    "Fecha: "+fmt(q.creada)+"\n"+
+    "Válida hasta: "+fmt(q.vence)+"\n"+
+    "--------------------------------\n"+lineas+"\n"+
+    "--------------------------------\n"+
+    "Subtotal: "+money(sumaLineas(q))+"\n"+
+    (envioDe(q)>0 ? "Envío"+(q.envioNota? " ("+q.envioNota+")":"")+": "+money(envioDe(q))+"\n" : "")+
+    "*TOTAL: "+money(totalDe(q))+"*\n\n"+
+    empresa.nombre+(empresa.telefono? " · "+empresa.telefono:"")+
+    (empresa.horario? "\nAtención: "+empresa.horario:"");
+}
+function pintarMensaje(q){ burbuja(dom("d-msg"), cotizacionTexto(q)); dom("d-num").textContent = "De +"+empresa.whatsapp+" → "+q.whatsapp; }
+
+dom("d-cambiar").onchange = e=>{ abierta.estado=e.target.value; dom("d-estado").innerHTML=pill(abierta.estado); registrar(abierta,"Estado cambiado a «"+abierta.estado+"»"); toast("Estado actualizado."); };
+dom("d-add").onclick = ()=>{
+  const p = catalogo.find(x=>x.sku===dom("d-catalogo").value);
+  const ya = abierta.lineas.find(l=>l.sku===p.sku);
+  if(ya) ya.cantidad++; else abierta.lineas.push({sku:p.sku,nombre:p.nombre,precio:p.precio,cantidad:1,descuento:0,promoId:null});
+  pintarLineas(abierta); registrar(abierta,"Producto agregado: "+p.nombre);
+};
+dom("d-envio").onchange = ()=>{
+  abierta.envio = Math.max(0, +dom("d-envio").value||0);
+  guardar(); pintarLineas(abierta); pintarMensaje(abierta); pintarLista();
+  registrar(abierta, "Costo de envío: "+money(abierta.envio));
+};
+dom("d-envio-nota").onchange = ()=>{ abierta.envioNota = dom("d-envio-nota").value.trim(); guardar(); pintarMensaje(abierta); };
+dom("d-nota-add").onclick = ()=>{
+  const t = dom("d-nota").value.trim();
+  if(!t){ toast("Escriba el comentario antes de guardarlo."); return; }
+  abierta.notas.push(t); dom("d-nota").value="";
+  registrar(abierta,"Comentario interno: "+t); toast("Comentario guardado.");
+};
+dom("d-wa").onclick = ()=>{
+  if(abierta.estado==="Nueva" || abierta.estado==="En revisión"){
+    abierta.estado="Enviada"; dom("d-cambiar").value="Enviada"; dom("d-estado").innerHTML=pill(abierta.estado);
+    pintarLista();
+  }
+  guardar();
+  abrirWhatsApp(abierta.whatsapp, cotizacionTexto(abierta));
+  registrar(abierta,"Cotización completa enviada por WhatsApp");
+};
+dom("d-pdf").onclick = ()=>{ registrar(abierta,"PDF generado"); toast("PDF generado (simulado en este prototipo)."); };
+dom("d-enviar").onclick = ()=>{
+  abierta.estado="Enviada"; dom("d-cambiar").value="Enviada"; dom("d-estado").innerHTML=pill(abierta.estado);
+  registrar(abierta,"Cotización enviada al cliente"); toast("Cotización enviada a "+abierta.correo);
+};
+
+/* ================== panel de promociones ================== */
+function pintarPromos(){
+  dom("pr-lista").innerHTML = promociones.length ? promociones.map(p=>{
+    const venc = !vigente(p);
+    const alcance = p.alcance==="todos" ? "Todos los clientes"
+      : p.alcance==="cliente" ? "Cliente: "+p.valor : "Zona: "+p.valor;
+    return `<div class="promo-card ${venc?"off":""}"><div class="body">
+      <h4>${escapar(p.nombre)}</h4>
+      <div class="hint" style="margin:0">${escapar(textoPromo(p))} · ${p.sku? p.sku : "todos los productos"}</div>
+      <div class="hint" style="margin:2px 0 0">${escapar(alcance)} · válida hasta ${fmt(p.hasta)}${venc?" · vencida o inactiva":""}</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-direction:column">
+      <button class="btn ghost sm" data-t="${p.id}">${p.activa?"Desactivar":"Activar"}</button>
+      <button class="btn danger sm" data-x="${p.id}">Eliminar</button>
+    </div></div>`;
+  }).join("") : `<p class="hint" style="margin:0">Todavía no hay promociones. Cree la primera con el formulario.</p>`;
+  dom("pr-lista").querySelectorAll("[data-t]").forEach(b=> b.onclick = ()=>{
+    const p = promociones.find(x=>x.id===+b.dataset.t); p.activa=!p.activa;
+    pintarPromos(); pintarCatalogo(); if(abierta){ pintarLineas(abierta); pintarPromosCliente(abierta); }
+    toast("Promoción "+(p.activa?"activada":"desactivada")+".");
+  });
+  dom("pr-lista").querySelectorAll("[data-x]").forEach(b=> b.onclick = ()=>{
+    const id=+b.dataset.x;
+    promociones = promociones.filter(x=>x.id!==id);
+    cotizaciones.forEach(q=> q.lineas.forEach(l=>{ if(l.promoId===id) l.promoId=null; }));
+    pintarPromos(); pintarCatalogo(); if(abierta){ pintarLineas(abierta); pintarPromosCliente(abierta); }
+    toast("Promoción eliminada.");
+  });
+}
+function camposPromo(){
+  const tipo = dom("pr-tipo").value, alc = dom("pr-alcance").value;
+  dom("pr-campos-cantidad").style.display = tipo==="cantidad" ? "grid" : "none";
+  dom("pr-campo-pct").style.display = tipo==="porcentaje" ? "block" : "none";
+  dom("pr-campo-valor").style.display = alc==="todos" ? "none" : "block";
+  dom("pr-valor-lbl").textContent = alc==="cliente" ? "Nombre del cliente o empresa" : "Ciudad, estado o país";
+}
+dom("pr-tipo").onchange = camposPromo;
+dom("pr-alcance").onchange = camposPromo;
+dom("pr-crear").onclick = ()=>{
+  const nombre = dom("pr-nombre").value.trim();
+  const alc = dom("pr-alcance").value, valor = dom("pr-valor").value.trim();
+  if(!nombre){ toast("Escriba un nombre para la promoción."); return; }
+  if(!dom("pr-fecha").value){ toast("Indique hasta qué fecha es válida."); return; }
+  if(alc!=="todos" && !valor){ toast("Indique el cliente o la zona donde aplica."); return; }
+  const p = {
+    id: ++promoId, nombre, tipo: dom("pr-tipo").value,
+    x: +dom("pr-x").value||5, y: +dom("pr-y").value||1, pct: +dom("pr-pct").value||10,
+    sku: dom("pr-producto").value, alcance: alc, valor, hasta: dom("pr-fecha").value, activa:true
+  };
+  promociones.push(p);
+  dom("pr-nombre").value=""; dom("pr-valor").value="";
+  pintarPromos(); pintarCatalogo(); if(abierta){ pintarLineas(abierta); pintarPromosCliente(abierta); }
+  toast("Promoción creada.");
+};
+
+/* ================== catálogo administrable ================== */
+let editandoSku = null;
+let pagina = 0;
+const POR_PAGINA = 50;
+function productosFiltrados(){
+  const q = (dom("fl-buscar").value||"").trim().toLowerCase();
+  const d = dom("fl-depto").value, v = dom("fl-visible").value;
+  return catalogo.filter(p=>{
+    if(d && (p.depto||"General")!==d) return false;
+    if(v==="1" && !p.activo) return false;
+    if(v==="0" && p.activo) return false;
+    if(q && !((p.nombre+" "+p.sku+" "+p.desc).toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+["fl-buscar","fl-depto","fl-visible"].forEach(id=>{
+  dom(id).addEventListener("input", ()=>{ pagina=0; pintarProductos(); });
+  dom(id).addEventListener("change", ()=>{ pagina=0; pintarProductos(); });
+});
+dom("pg-ant").onclick = ()=>{ if(pagina>0){ pagina--; pintarProductos(); } };
+dom("pg-sig").onclick = ()=>{ const t=productosFiltrados().length; if((pagina+1)*POR_PAGINA<t){ pagina++; pintarProductos(); } };
+
+function pintarProductos(){
+  const filtrados = productosFiltrados();
+  const total = filtrados.length;
+  const desde = Math.min(pagina*POR_PAGINA, Math.max(0,total-1));
+  const pagina_ = filtrados.slice(desde, desde+POR_PAGINA);
+  dom("fl-conteo").textContent = total + " de " + catalogo.length + " producto(s)";
+  dom("pg-info").textContent = total ? (desde+1)+"–"+Math.min(desde+POR_PAGINA,total)+" de "+total : "0";
+  dom("pg-ant").disabled = pagina===0;
+  dom("pg-sig").disabled = (pagina+1)*POR_PAGINA >= total;
+  dom("pd-filas").innerHTML = total ? pagina_.map(p=>`
+    <tr>
+      <td style="padding-left:14px"><img src="${imagenDe(p)}" alt="" style="width:46px;height:36px;object-fit:cover;border-radius:3px;border:1px solid var(--line)"></td>
+      <td>${escapar(p.nombre)}<div class="hint mono">${escapar(p.sku)} · ${escapar(p.desc)}</div></td>
+      <td>${escapar(p.depto||"General")}<div class="hint">${escapar(p.unidad||"Unidad")}</div></td>
+      <td class="num">${money(p.precio)}${p.ocultarPrecio?'<div class="hint">precio oculto</div>':""}</td>
+      <td>${p.activo?'<span class="pill s-aceptada">Visible</span>':'<span class="pill s-vencida">Oculto</span>'}</td>
+      <td class="num"><div class="btn-row" style="justify-content:flex-end">
+        <button class="btn ghost sm" data-ed="${p.sku}">Editar</button>
+        <button class="btn ghost sm" data-top="${p.sku}">${p.destacado?"★ Quitar":"☆ Más vendido"}</button>
+        <button class="btn ghost sm" data-vis="${p.sku}">${p.activo?"Ocultar":"Mostrar"}</button>
+        <button class="btn danger sm" data-del="${p.sku}">Eliminar</button>
+      </div></td></tr>`).join("")
+    : `<tr><td colspan="6" class="empty">${catalogo.length? "Ningún producto coincide con el filtro." : "Sin productos. Agregue el primero con el formulario."}</td></tr>`;
+
+  dom("pd-filas").querySelectorAll("[data-ed]").forEach(b=> b.onclick = ()=> editarProducto(b.dataset.ed));
+  dom("pd-filas").querySelectorAll("[data-top]").forEach(b=> b.onclick = ()=>{
+    const p = catalogo.find(x=>x.sku===b.dataset.top); p.destacado = !p.destacado; guardar();
+    pintarProductos(); pintarCatalogo(); pintarDestacados();
+    toast(p.destacado? "Agregado a los más vendidos." : "Quitado de los más vendidos.");
+  });
+  dom("pd-filas").querySelectorAll("[data-vis]").forEach(b=> b.onclick = ()=>{
+    const p = catalogo.find(x=>x.sku===b.dataset.vis); p.activo = !p.activo; guardar();
+    pintarProductos(); pintarChips(); pintarCatalogo();
+    toast(p.activo? "Producto visible en el catálogo." : "Producto oculto para los clientes.");
+  });
+  dom("pd-filas").querySelectorAll("[data-del]").forEach(b=> b.onclick = ()=>{
+    const sku = b.dataset.del;
+    if(cotizaciones.some(q=> q.lineas.some(l=>l.sku===sku))){
+      toast("Ese producto está en cotizaciones existentes. Ocúltelo en lugar de eliminarlo."); return;
+    }
+    catalogo = catalogo.filter(x=>x.sku!==sku); delete pedido[sku]; imgBorrar(sku); guardar();
+    if(editandoSku===sku) limpiarFormProducto();
+    pintarProductos(); pintarChips(); pintarCatalogo(); pintarResumen(); pintarSelectProductos();
+    toast("Producto eliminado.");
+  });
+  pintarSelectProductos(); pintarDeptos(); pintarDestacados(); previewProducto();
+}
+function cargarOpciones(){
+  dom("op-precios").checked = !!opciones.mostrarPrecios;
+  dom("op-destacados").checked = opciones.verDestacados !== false;
+  dom("op-titulo").value = opciones.tituloDestacados || "Los más vendidos";
+  dom("op-envio").value = opciones.envioDefecto || 0;
+  pintarDestacados();
+}
+function pintarDestacados(){
+  const top = catalogo.filter(p=>p.destacado);
+  dom("op-lista").innerHTML = top.length ? top.map(p=>`
+    <div class="promo-card"><div class="body"><h4>${escapar(p.nombre)}</h4>
+      <div class="hint" style="margin:0">${escapar(p.sku)} · ${escapar(p.depto||"General")}${p.activo?"":" · oculto"}</div>
+    </div><button class="btn ghost sm" data-quitar="${escapar(p.sku)}">Quitar</button></div>`).join("")
+    : `<p class="hint" style="margin:0">Ningún producto marcado. Use el botón «Más vendido» en la lista de productos.</p>`;
+  dom("op-lista").querySelectorAll("[data-quitar]").forEach(b=> b.onclick = ()=>{
+    const p = catalogo.find(x=>x.sku===b.dataset.quitar); p.destacado=false; guardar();
+    pintarProductos(); pintarCatalogo(); pintarDestacados(); toast("Quitado de los más vendidos.");
+  });
+}
+dom("op-guardar").onclick = ()=>{
+  opciones.mostrarPrecios = dom("op-precios").checked;
+  opciones.verDestacados = dom("op-destacados").checked;
+  opciones.tituloDestacados = dom("op-titulo").value.trim() || "Los más vendidos";
+  opciones.envioDefecto = Math.max(0, +dom("op-envio").value||0);
+  guardar();
+  if(dom("g-precios")) dom("g-precios").checked = opciones.mostrarPrecios;
+  pintarCatalogo(); pintarResumen();
+  toast("Vista del catálogo actualizada.");
+};
+function pintarDeptos(){
+  dom("dp-lista").innerHTML = departamentos.map(d=>{
+    const n = catalogo.filter(p=>(p.depto||"General")===d).length;
+    return `<div class="promo-card"><div class="body"><h4>${escapar(d)}</h4>
+      <div class="hint" style="margin:0">${n} producto(s)</div></div>
+      <button class="btn danger sm" data-dp="${escapar(d)}">Eliminar</button></div>`;
+  }).join("") || `<p class="hint" style="margin:0">Sin departamentos.</p>`;
+  dom("dp-lista").querySelectorAll("[data-dp]").forEach(b=> b.onclick = ()=>{
+    const d = b.dataset.dp;
+    if(catalogo.some(p=>(p.depto||"General")===d)){ toast("Primero mueva los productos de ese departamento."); return; }
+    departamentos = departamentos.filter(x=>x!==d); guardar();
+    pintarDeptos(); pintarSelectProductos(); pintarChips(); pintarCatalogo(); pintarProductos();
+  });
+}
+dom("dp-add").onclick = ()=>{
+  const d = dom("dp-nueva").value.trim();
+  if(!d){ toast("Escriba el nombre del departamento."); return; }
+  if(departamentos.includes(d)){ toast("Ese departamento ya existe."); return; }
+  departamentos.push(d); dom("dp-nueva").value=""; guardar();
+  pintarDeptos(); pintarSelectProductos(); pintarChips();
+  toast("Departamento agregado.");
+};
+function pintarSelectProductos(){
+  const sel = dom("pd-depto").value, flt = dom("fl-depto").value;
+  dom("pd-depto").innerHTML = departamentos.map(d=>`<option value="${escapar(d)}">${escapar(d)}</option>`).join("");
+  dom("fl-depto").innerHTML = `<option value="">Todos los departamentos</option>`+
+    departamentos.map(d=>`<option value="${escapar(d)}">${escapar(d)}</option>`).join("");
+  if(departamentos.includes(sel)) dom("pd-depto").value = sel;
+  if(departamentos.includes(flt)) dom("fl-depto").value = flt;
+  dom("pr-producto").innerHTML = `<option value="">Todos los productos</option>` +
+    catalogo.map(p=>`<option value="${p.sku}">${escapar(p.nombre)}</option>`).join("");
+  if(dom("d-catalogo"))
+    dom("d-catalogo").innerHTML = catalogo.map(p=>`<option value="${p.sku}">${escapar(p.nombre)} · ${money(p.precio)}</option>`).join("");
+}
+let imgTemporal = null;
+/* lee el PNG/JPG elegido, lo reduce y lo convierte en dato guardable */
+function leerImagen(input, max, cb){
+  const f = input.files && input.files[0];
+  if(!f){ cb(null); return; }
+  const fr = new FileReader();
+  fr.onload = ()=>{
+    const im = new Image();
+    im.onload = ()=>{
+      const e = Math.min(1, max/Math.max(im.width, im.height));
+      const cv = document.createElement("canvas");
+      cv.width = Math.round(im.width*e); cv.height = Math.round(im.height*e);
+      cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);
+      cb(cv.toDataURL("image/png"));
+    };
+    im.onerror = ()=>cb(null);
+    im.src = fr.result;
+  };
+  fr.readAsDataURL(f);
+}
+function leerFormProducto(){
+  const previa = editandoSku ? (catalogo.find(p=>p.sku===editandoSku)||{}) : {};
+  return {
+    sku: dom("pd-sku").value.trim().toUpperCase(),
+    nombre: dom("pd-nombre").value.trim(),
+    desc: dom("pd-desc").value.trim(),
+    precio: +dom("pd-precio").value || 0,
+    unidad: dom("pd-unidad").value.trim() || "Unidad",
+    depto: dom("pd-depto").value || "General",
+    destacado: dom("pd-destacado").checked,
+    ocultarPrecio: dom("pd-sinprecio").checked,
+    img: "",
+    icono: dom("pd-icono").value,
+    activo: dom("pd-activo").checked,
+  };
+}
+function previewProducto(){
+  const p = leerFormProducto();
+  if(imgTemporal) p.img = imgTemporal;
+  if(!p.nombre) p.nombre = "Nombre del producto";
+  if(!p.sku) p.sku = "SKU";
+  dom("pd-preview").innerHTML = tarjeta(p, 0, true);
+}
+["pd-sku","pd-nombre","pd-desc","pd-unidad"].forEach(id=> dom(id).addEventListener("input", previewProducto));
+dom("pd-icono").addEventListener("change", previewProducto);
+dom("pd-depto").addEventListener("change", previewProducto);
+["pd-destacado","pd-sinprecio"].forEach(id=> dom(id).addEventListener("change", previewProducto));
+dom("pd-archivo").addEventListener("change", ()=> leerImagen(dom("pd-archivo"), 700, d=>{
+  if(!d){ toast("No se pudo leer la imagen."); return; }
+  imgTemporal = d; previewProducto(); toast("Imagen cargada.");
+}));
+function limpiarFormProducto(){
+  editandoSku = null; imgTemporal = null;
+  ["pd-sku","pd-nombre","pd-desc"].forEach(id=> dom(id).value="");
+  if(departamentos.length) dom("pd-depto").value = departamentos[0];
+  dom("pd-archivo").value = "";
+  dom("pd-precio").value = 0; dom("pd-unidad").value = "Unidad";
+  dom("pd-activo").checked = true; dom("pd-sku").disabled = false;
+  dom("pd-destacado").checked = false; dom("pd-sinprecio").checked = false;
+  dom("pd-titulo").textContent = "Nuevo producto";
+  dom("pd-cancelar").style.display = "none";
+  previewProducto();
+}
+function editarProducto(sku){
+  const p = catalogo.find(x=>x.sku===sku);
+  editandoSku = sku; imgTemporal = null;
+  dom("pd-sku").value = p.sku; dom("pd-sku").disabled = true;
+  dom("pd-nombre").value = p.nombre; dom("pd-desc").value = p.desc;
+  dom("pd-precio").value = p.precio; dom("pd-unidad").value = p.unidad||"Unidad";
+  dom("pd-archivo").value = ""; dom("pd-icono").value = p.icono||"tornillo";
+  dom("pd-depto").value = p.depto||"General";
+  dom("pd-activo").checked = p.activo;
+  dom("pd-destacado").checked = !!p.destacado;
+  dom("pd-sinprecio").checked = !!p.ocultarPrecio;
+  dom("pd-titulo").textContent = "Editar " + p.sku;
+  dom("pd-cancelar").style.display = "inline-flex";
+  previewProducto();
+  dom("pd-titulo").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+dom("pd-cancelar").onclick = limpiarFormProducto;
+dom("pd-guardar").onclick = ()=>{
+  const p = leerFormProducto();
+  if(!p.sku || !p.nombre){ toast("El código y el nombre son obligatorios."); return; }
+  if(p.precio<=0){ toast("Indique el precio de lista, aunque sea provisional."); return; }
+  if(editandoSku){
+    const i = catalogo.findIndex(x=>x.sku===editandoSku);
+    catalogo[i] = {...catalogo[i], ...p, sku:editandoSku, img:""};
+    if(imgTemporal) imgGuardar(editandoSku, imgTemporal);
+    cotizaciones.forEach(q=> q.lineas.forEach(l=>{ if(l.sku===editandoSku) l.nombre = p.nombre; }));
+    toast("Producto actualizado.");
+  } else {
+    if(catalogo.some(x=>x.sku===p.sku)){ toast("Ya existe un producto con ese código."); return; }
+    catalogo.push(p);
+    if(imgTemporal) imgGuardar(p.sku, imgTemporal);
+    toast("Producto agregado al catálogo.");
+  }
+  guardar(); limpiarFormProducto();
+  pintarProductos(); pintarChips(); pintarCatalogo(); pintarResumen();
+  if(abierta) pintarLineas(abierta);
+};
+
+/* ================== configuración ================== */
+const campos = {"g-nombre":"nombre","g-logo":"logo","g-mail":"correo","g-tel":"telefono","g-pais":"pais","g-dir":"direccion","g-wa":"whatsapp","g-horario":"horario","g-msg":"mensaje"};
+function cargarConfig(){
+  for(const [id,k] of Object.entries(campos)) dom(id).value = empresa[k];
+  dom("g-activo").checked = empresa.activo; dom("g-dias").value = empresa.diasVigencia;
+  dom("g-precios").checked = !!opciones.mostrarPrecios;
+  previewConfig(); pintarCuentas();
+}
+function codigoNuevo(){
+  const a = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const t = [...crypto.getRandomValues(new Uint8Array(8))].map(b=>a[b%a.length]).join("");
+  return t.slice(0,4)+"-"+t.slice(4);
+}
+function asegurarCodigos(){ usuarios.forEach(u=>{ if(!u.codigo) u.codigo = codigoNuevo(); }); }
+function pintarCuentas(){
+  if(!dom("cu-lista")) return;
+  dom("cu-lista").innerHTML = usuarios.map((u,i)=>`
+    <div class="promo-card"><div class="body">
+      <h4>${escapar(u.nombre)} <span class="pill ${u.rol==="admin"?"s-enviada":"s-aceptada"}">${u.rol}</span></h4>
+      <div class="hint" style="margin:0">Usuario: ${escapar(u.usuario)}${u.correo?" · "+escapar(u.correo):""}</div>
+      <div class="hint" style="margin:2px 0 0">Código de recuperación: <span class="token">${escapar(u.codigo)}</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-direction:column">
+      <button class="btn ghost sm" data-cu="${i}">Cambiar contraseña</button>
+      <button class="btn ghost sm" data-cd="${i}">Nuevo código</button>
+    </div></div>`).join("");
+  dom("cu-lista").querySelectorAll("[data-cu]").forEach(b=> b.onclick = ()=>{
+    const u = usuarios[+b.dataset.cu];
+    const nueva = prompt("Nueva contraseña para "+u.nombre+":");
+    if(!nueva || nueva.length<4){ toast("La contraseña debe tener al menos 4 caracteres."); return; }
+    u.clave = nueva; guardar(); toast("Contraseña actualizada para "+u.nombre+".");
+  });
+  dom("cu-lista").querySelectorAll("[data-cd]").forEach(b=> b.onclick = ()=>{
+    const u = usuarios[+b.dataset.cd];
+    u.codigo = codigoNuevo(); guardar(); pintarCuentas();
+    toast("Nuevo código generado. Anótelo y entrégueselo al usuario.");
+  });
+  const conImg = Object.keys(imagenes).length;
+  dom("cu-stats").innerHTML = `
+    <dt>Productos</dt><dd>${catalogo.length}</dd>
+    <dt>Departamentos</dt><dd>${departamentos.length}</dd>
+    <dt>Con imagen</dt><dd>${conImg}</dd>
+    <dt>Cotizaciones</dt><dd>${cotizaciones.length}</dd>
+    <dt>Imágenes</dt><dd>${bd? "Base de datos del navegador" : "Modo básico"}</dd>`;
+}
+function previewConfig(){
+  burbuja(dom("g-preview"), dom("g-msg").value
+    .replaceAll("{cliente}", dom("c-nombre").value||"María Rentería")
+    .replaceAll("{folio}","#QT-2026-00042")
+    .replaceAll("{enlace}","empresa.com/cotizacion/QT-2026-00042?t=a1b2c3d4")
+    .replaceAll("{empresa}", dom("g-nombre").value));
+  dom("g-preview-num").textContent = "De +"+dom("g-wa").value.replace(/\D/g,"")+(dom("g-activo").checked?"":" · WhatsApp desactivado");
+}
+["g-msg","g-nombre","g-wa"].forEach(id=> dom(id).addEventListener("input",previewConfig));
+dom("g-activo").addEventListener("change",previewConfig);
+dom("g-guardar").onclick = ()=>{
+  for(const [id,k] of Object.entries(campos)) empresa[k]=dom(id).value;
+  empresa.activo = dom("g-activo").checked;
+  empresa.diasVigencia = Math.max(1,+dom("g-dias").value||15);
+  opciones.mostrarPrecios = dom("g-precios").checked;
+  if(dom("op-precios")) dom("op-precios").checked = opciones.mostrarPrecios;
+  guardar(); pintarCatalogo(); pintarResumen();
+  if(abierta) pintarMensaje(abierta);
+  toast("Configuración guardada para "+empresa.nombre+".");
+};
+
+/* ================== arranque ================== */
+async function iniciar(){
+  restaurar();
+  asegurarCodigos();
+  catalogo.forEach(p=>{ if(!p.depto) p.depto = "General"; });
+  departamentos = [...new Set([...departamentos, ...catalogo.map(p=>p.depto)])];
+  bd = await abrirBD();
+  await imgCargarTodas();
+  dom("pr-fecha").value = fechaEn(30);
+  camposPromo(); pintarSelectProductos(); pintarDeptos(); cargarOpciones();
+  pintarProductos(); pintarChips(); pintarCatalogo(); pintarResumen();
+  pintarPromos(); pintarLista(); cargarConfig(); aplicarSesion();
+  guardar();
+}
+iniciar();
+
+/* los datos se guardan solos: al cambiar algo, al cerrar y cada dos segundos */
+setInterval(guardar, 2000);
+window.addEventListener("beforeunload", guardar);
+document.addEventListener("visibilitychange", ()=>{ if(document.hidden) guardar(); });
+if(modoMemoria) toast("Este navegador no permite guardar datos. Descargue el archivo y ábralo desde su equipo para conservar las cotizaciones.");
+</script>
